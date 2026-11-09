@@ -11,7 +11,7 @@ class AlunoClass:
 #O método mostrarAluno concatena o nome, sobrenome e nota, enquanto transforma a nota em string. 
 
 def salvar(self, conexao, colecao):
-        # self.__dict__ já transforma os atributos (nome, sobrenome, nota) em dicionário automaticamente
+        # self.__dict__ utilizado abaixo já transforma os atributos (nome, sobrenome, nota) em dicionário automaticamente
         x = conexao[colecao].insert_one(self.__dict__) #inserção
         return x.acknowledged
 
