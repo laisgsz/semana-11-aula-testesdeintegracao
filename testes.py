@@ -15,8 +15,15 @@ class alunoTest(unittest.TestCase):
     self.conexao = ConexaoClass.conexaoMongoDB(self, url = 'localhost.com', banco = 'faculdade')
 
   def test_salvarAluno(self):   
-    print('Escreva o seu método aqui...')
-
+        resposta = self.aluno.salvar(conexao = self.conexao, colecao = 'aluno');  
+        self.assertEqual(True, resposta, 'Aluno cadastrado incorretamente!');
+    
+#instancia o aluno, chama o .salvar() passando a conexão simulada pelo @mongomock.patch 
+#valida com o self.assertEqual(True, resposta, ...) se o retorno foi bem-sucedido.
+#assertEqual compara o primeiro argumento (True, que é o que eu espero) com o segundo argumento (resposta, que é o valor real retornado pelo método .salvar()).
+#Se por algum motivo o método .salvar() retornar False (ou algo diferente de True), o teste vai falhar.
+#É nesse momento que o Python exibe a mensagem 'Aluno cadastrado incorretamente!'
+  
   def test_salvarTurma(self):   
     resposta = self.turma.salvar(conexao = self.conexao, colecao = 'turma');  
     self.assertEqual(True, resposta, 'Turma cadastrada incorretamente!');
